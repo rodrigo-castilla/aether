@@ -4,6 +4,9 @@
 > **Estado:** 🚧 Fase de Diseño
 > **Stack:** Python 3.10+, Sockets (UDP/TCP), JSON, Threading/Asyncio.
 
+## Disclaimer
+Project in development
+
 ## 1. 🎯 Visión y Alcance
 **El Problema:** Compartir datos entre scripts (PC, Raspberry Pi, Server) requiere configurar Redis/MQTT, abrir puertos y gestionar IPs. Es lento y tedioso.
 **La Solución:** Un SDK que usa la red local (LAN) como memoria RAM compartida. Los dispositivos se autodescubren y sincronizan diccionarios automáticamente.
@@ -76,7 +79,21 @@ Supongamos la siguiente "discusión entre ordenadores" que usan Aether y compart
 9. El diccionario interno del "Ordenador 2" se actualiza.
     Si el usuario definió un decorador `@on_change("source")`, se dispara la función asociada en el hilo principal.
 
+# Instalación
 
+```python
+pip install git+https://github.com/rodrigo-castilla/aether.git
+```
+
+Check if is installed succesfully
+```python
+pip list # check if appears "aether-sdk" 
+```
+
+# Desinstalación
+```python
+pip uninstall aether-sdk
+```
 
 # Extensiones
 - Ampliar más allá de LAN (poder añadir "parametros" para acceso a subredes, ACL etc)
