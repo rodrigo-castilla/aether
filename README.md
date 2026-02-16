@@ -151,7 +151,7 @@ pip uninstall aether-sdk
 
 # Actualización
 ```python
-pip install --upgrade aether-sdk
+pip install --upgrade git+https://github.com/rodrigo-castilla/aether.git
 ```
 
 # Extensiones
