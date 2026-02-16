@@ -82,13 +82,7 @@ Supongamos la siguiente "discusión entre ordenadores" que usan Aether y compart
 # POC (Proof Of Concept)
 ```python
 # file: test.py
-import aether
-import sys
-import os
-import json
-import socket
-import code
-print(f"\n👀 OJO: Python está cargando aether desde: {aether.__file__}")
+import aether, sys, os, json, socket, code
 
 def initialization():
     # ---------- json folder path -------------
@@ -110,16 +104,10 @@ def initialization():
     
     return HAS_IPYTHON
 
-def jsonfile(file):
-    with open(file, "r") as jsonfile:
-        data = json.load(jsonfile)
-    return data
-
-
 # ---------- MAIN ------------
 if __name__=="__main__":
     if len(sys.argv) < 2:
-        print("❌ Uso: python test_diagram.py [pcX]")
+        print("❌ Usage: python test_diagram.py [pcX]")
         sys.exit(1)
 
     cmdinteractive = initialization()
@@ -132,14 +120,14 @@ if __name__=="__main__":
     with aether.Aether() as ae:
         if cmdinteractive:
             from IPython import embed
-            # Lanzamos la consola PRO con colores y autocompletado
+            # PRO console 
             embed(
                 colors="neutral",
                 banner1=banner,
                 user_ns=locals() # Pasamos las variables locales (ae, pool, touch)
             )
         else:
-            # Fallback por si no instalaste ipython
+            # Fallback if not installed IPython
             print(banner)
             print("⚠️ AVISO: Instala 'ipython' para tener autocompletado y colores.")
             code.interact(local=locals(), banner="")
