@@ -4,7 +4,7 @@
 > **Estado:** 🚧 Fase de Diseño
 > **Stack:** Python 3.10+, Sockets (UDP/TCP), JSON, Threading/Asyncio.
 
-## Disclaimer
+## ⚠️Disclaimer⚠️
 Project in development
 
 ## 1. 🎯 Visión y Alcance
@@ -78,6 +78,72 @@ Supongamos la siguiente "discusión entre ordenadores" que usan Aether y compart
 
 9. El diccionario interno del "Ordenador 2" se actualiza.
     Si el usuario definió un decorador `@on_change("source")`, se dispara la función asociada en el hilo principal.
+
+# POC (Prove Of Concept)
+```python
+# file: test.py
+import aether
+import sys
+import os
+import json
+import socket
+import code
+print(f"\n👀 OJO: Python está cargando aether desde: {aether.__file__}")
+
+def initialization():
+    # ---------- json folder path -------------
+    pathjsonfolder = "./json"
+
+    pathpc = os.path.join(os.getcwd(), sys.argv[1])
+    # Create pc folder
+    if not os.path.exists(pathpc):
+        os.mkdir(pathpc)
+
+    try:
+        from IPython import embed
+        HAS_IPYTHON=True
+        print(f"Initialized cmdline with IPython\n")
+    except ImportError:
+        import code
+        HAS_IPYTHON=False
+        print(f"Initialized cmdline with code\n")
+    
+    return HAS_IPYTHON
+
+def jsonfile(file):
+    with open(file, "r") as jsonfile:
+        data = json.load(jsonfile)
+    return data
+
+
+# ---------- MAIN ------------
+if __name__=="__main__":
+    if len(sys.argv) < 2:
+        print("❌ Uso: python test_diagram.py [pcX]")
+        sys.exit(1)
+
+    cmdinteractive = initialization()
+
+    banner=f"""
+    ======================================
+    |           CMD-Inline               |
+    ======================================
+    """
+    with aether.Aether() as ae:
+        if cmdinteractive:
+            from IPython import embed
+            # Lanzamos la consola PRO con colores y autocompletado
+            embed(
+                colors="neutral",
+                banner1=banner,
+                user_ns=locals() # Pasamos las variables locales (ae, pool, touch)
+            )
+        else:
+            # Fallback por si no instalaste ipython
+            print(banner)
+            print("⚠️ AVISO: Instala 'ipython' para tener autocompletado y colores.")
+            code.interact(local=locals(), banner="")
+``` 
 
 # Instalación
 
