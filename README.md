@@ -79,7 +79,7 @@ Supongamos la siguiente "discusión entre ordenadores" que usan Aether y compart
 9. El diccionario interno del "Ordenador 2" se actualiza.
     Si el usuario definió un decorador `@on_change("source")`, se dispara la función asociada en el hilo principal.
 
-# POC (Prove Of Concept)
+# POC (Proof Of Concept)
 ```python
 # file: test.py
 import aether
