@@ -149,6 +149,11 @@ pip list # check if appears "aether-sdk"
 pip uninstall aether-sdk
 ```
 
+# Actualización
+```python
+pip install --upgrade aether-sdk
+```
+
 # Extensiones
 - Ampliar más allá de LAN (poder añadir "parametros" para acceso a subredes, ACL etc)
 - Poder crear una interfaz para que optimice aun mas ya que no tiene que pasar por red fisica y cada uno de los dispositivos, sino broadcast de la nueva interfaz
