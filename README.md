@@ -81,7 +81,7 @@ Supongamos la siguiente "discusión entre ordenadores" que usan Aether y compart
 
 # POC (Proof Of Concept)
 ```python
-# file: test.py
+# file: test_diagram.py
 import aether, sys, os, json, socket, code
 
 def initialization():
@@ -133,13 +133,49 @@ if __name__=="__main__":
             code.interact(local=locals(), banner="")
 ``` 
 
+En la terminal:
+```bash
+python test_diagram.py pc1 # puede ser el nombre de pc que queramos
+```
+
+# Usage 
+Todo gira entorno a la clase Aether que inicia con una serie de parámetros y opciones.
+1. Inicializar el objeto *Aether*:
+```bash
+>>> from aether import Aether # lib required
+>>> pc = Aether() # Aether(port=5000)
+```
+
+2. Activar el daemon para correr en segundo plano:
+```bash
+>>> pc.activate()   # corriendo en segundo plano (default port = 5000)
+                    # se queda escuchando a todos
+```
+
+3. Configurar *pool*:
+```bash
+>>> pc.pool("ruta/al/pool") # pool(path, distinct=False)
+                            # "distinct" activa subdirectorios en el pool según dispositivo
+```
+
+4. Envío / Sincronización: 
+```bash
+>>> pc.send("{ 'clave': 'valor'}", "archivo.json") # manda esa data en ese nombre de archivo
+>>> pc.sync()   # sync(target=None), sincronizar archivo/s, el target indica si es un archivo concreto
+```
+
+5. Desactivar daemon:
+```bash
+>>> pc.close()
+```
+
 # Instalación
 
 ```python
 pip install git+https://github.com/rodrigo-castilla/aether.git
 ```
 
-Check if is installed succesfully
+Verificamos que esté instalado el SDK
 ```python
 pip list # check if appears "aether-sdk" 
 ```
